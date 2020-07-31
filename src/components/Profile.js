@@ -1,20 +1,22 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import EditDetails from '../components/EditDetails';
 // MUI stuff
 import Button from '@material-ui/core/Button';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 // Icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
-import Tooltip from '@material-ui/core/Tooltip';
+import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 // Redux
 import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userAction';
@@ -80,6 +82,9 @@ class Profile extends Component {
         const fileInput = document.getElementById('imageInput');
         fileInput.click();
     };
+    handleLogout = () => {
+        this.props.logoutUser();
+    }
     render(){    
         const { 
             classes, 
@@ -134,6 +139,12 @@ class Profile extends Component {
                         <CalendarToday  color="primary"/>{' '}
                         <spen>Joined {dayjs(createdAt).format('MMM YYYY')}</spen>
                     </div>
+                    <Tooltip title="Logout" placement="top">
+                        <IconButton onClick={this.handleLogout}>
+                            <KeyboardReturn color="primary"/>
+                        </IconButton>
+                    </Tooltip>
+                    <EditDetails/>
                 </div>
             </Paper>
         ) : (
@@ -169,4 +180,4 @@ Profile.propTypes = {
     classes: PropTypes.object.isRequired
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Profile))
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Profile));
