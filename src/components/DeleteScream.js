@@ -66,7 +66,7 @@ class DeleteScream extends Component {
                     </DialogActions>
                 </Dialog>
             </Fragment>
-        )
+        );
     }
 }
 
