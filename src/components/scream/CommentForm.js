@@ -10,7 +10,18 @@ import { connect } from 'react-redux';
 import { submitComment } from '../../redux/actions/dataAction';
 
 const styles = {
-
+    visibleSeparator: {
+        width: '100%',
+        borderBotton: '1px solid rgba(0,0,0,0.1)',
+        marginBotton: 20
+    },
+    button: {
+        marginTop: 20,
+        position: 'relative'
+    },
+    textField: {
+        margin: '10px auto 10px auto'
+    }
 };
 
 export class CommentForm extends Component {
@@ -34,6 +45,7 @@ export class CommentForm extends Component {
         event.preventDefault();
         this.props.submitComment(this.props.screamId, { body: this.state.body});
     }
+    
     render() {
         const { classes, authenticated } = this.props;
         const errors = this.state.errors;
