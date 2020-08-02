@@ -4,6 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
 import Comments from './Comments';
+import CommentForm from './CommentForm';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 // MUI stuff
@@ -18,7 +19,7 @@ import UnfoldMore from '@material-ui/icons/UnfoldMore';
 import ChatIcon from '@material-ui/icons/Chat';
 // Redux stuff
 import { connect } from 'react-redux';
-import { getScream } from '../../redux/actions/dataAction';
+import { getScream, clearErrors } from '../../redux/actions/dataAction';
 
 const styles = {
     invisibleSeparator: {
@@ -64,6 +65,7 @@ class ScreamDialog extends Component{
     }
     handleClose = () => {
         this.setState({ open: false });
+        this.props.clearErrors();
     }
 
     render(){
@@ -116,7 +118,8 @@ class ScreamDialog extends Component{
                     <span>{commentCount} comments</span>
                 </Grid>
                 <hr className={classes.visibleSeparator}/>
-                <Comments comments={comments}/>
+                <CommentForm screamId={screamId} />
+                <Comments comments={comments} />
             </Grid>
         )
         return (
@@ -151,6 +154,7 @@ class ScreamDialog extends Component{
 }
 
 ScreamDialog.propTypes = {
+    clearErrors: PropTypes.func.isRequired,
     getScream: PropTypes.func.isRequired,
     screamId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
@@ -164,7 +168,8 @@ const mapStateToProps = state => ({
 })
 
 const mapActionsToProps = {
-    getScream
+    getScream,
+    clearErrors
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(ScreamDialog));
