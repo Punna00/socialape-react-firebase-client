@@ -15,7 +15,7 @@ import {
 import axios from 'axios';
 
 // Get all screams
-export const getScreams = () => dispatch => {
+export const getScreams = () => (dispatch) => {
     dispatch({ type: LOADING_DATA });
     axios.get('/screams')
         .then(res => {
@@ -46,7 +46,7 @@ export const getScream = (screamId) => (dispatch) => {
 }
 
 // Post a scream
-export const postScream = (newScream) => dispatch => {
+export const postScream = (newScream) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     axios.post('/scream', newScream)
         .then(res => {
@@ -65,32 +65,35 @@ export const postScream = (newScream) => dispatch => {
 }
 
 // Like a scream
-export const likeScream = (screamId) => dispatch => {
-    axios.get(`/scream/${screamId}/like`)
+export const likeScream = (screamId) => (dispatch) => {
+    axios
+        .get(`/scream/${screamId}/like`)
         .then(res => {
             dispatch({
                 type: LIKE_SCREAM,
                 payload: res.data
-            })
+            });
         })
         .catch(err => console.log(err));
-}
+};
 
 // Unlike a scream
-export const unlikeScream = (screamId) => dispatch => {
-    axios.get(`/scream/${screamId}/unlike`)
+export const unlikeScream = (screamId) => (dispatch) => {
+    axios
+        .get(`/scream/${screamId}/unlike`)
         .then(res => {
             dispatch({
                 type: UNLIKE_SCREAM,
                 payload: res.data
-            })
+            });
         })
         .catch(err => console.log(err));
 };
 
 // Submit a comment
 export const submitComment = (screamId, commentData) => (dispatch) => {
-    axios.post(`/scream/${screamId}/comment`, commentData)
+    axios
+        .post(`/scream/${screamId}/comment`, commentData)
         .then(res => {
             dispatch({
                 type: SUBMIT_COMMENT,

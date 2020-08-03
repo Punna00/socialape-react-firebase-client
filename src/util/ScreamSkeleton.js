@@ -1,13 +1,11 @@
 import React, { Fragment } from 'react';
 import NoImg from '../images/blank-profile.png';
 import PropTypes from 'prop-types';
+import withStyles from '@material-ui/core/styles/withStyles';
 // MUI stuff
 import Card from '@material-ui/core/Card';
-import CcardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-
-import withStyles from '@material-ui/core/styles/withStyles';
 import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
 
 const styles = {
     card: {

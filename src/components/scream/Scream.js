@@ -55,7 +55,7 @@ class Scream extends Component {
 
     const deleteButton = authenticated && userHandle === handle ? (
       <DeleteScream screamId={screamId}/>
-    ) : null
+    ) : null;
 
     return (
       <Card className={classes.card}>
@@ -106,7 +106,7 @@ Scream.propTypes = {
   user: PropTypes.object.isRequired,
   scream: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  openDiaglog: PropTypes.bool
+  openDialog: PropTypes.bool
 }
 
 const mapStateToProps = state => ({
